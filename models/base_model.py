@@ -10,15 +10,15 @@ class BaseModel:
     """
     Base class for all models
     """
-
-    def __init__(self, *args, **kwrgs):
+    def __init__(self):
         """
-        intialization of a new BaseModel
+        Intialization of new BaseModle
         """
-      time_format = "%Y-%m-%dT%H:%M:%S.%f" 
+      time_format = "%Y-%m-%dT%H:%M:%S.%f"
       self.id = str(uuid.uuid4())
       self.created_at = datetime.today()
       self.updated_at = datetime.today()
+      
 
 
     def save(self):
@@ -26,7 +26,6 @@ class BaseModel:
       Updates the updated_at attribute
       """
       self.updated_at = datetime.today()
-      
 
     def __str__(self):
       """
