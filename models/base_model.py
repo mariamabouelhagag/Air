@@ -26,7 +26,7 @@ class BaseModel:
       Updates the updated_at attribute
       """
       self.updated_at = datetime.today()
-      model.storage.save()
+      
 
     def __str__(self):
       """
