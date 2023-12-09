@@ -12,12 +12,11 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Initializes a new BaseModel class."""
         time_format = "%Y-%m-%d %H:%M:%S.%f"
-        if kwargs:
-            self.id = str(uuid4())
+        self.id = str(uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
             models.storage.new(self)
-
+        if kwargs:
             for key, value in kwargs.items():
                 if key == '__class__':
                     continue
