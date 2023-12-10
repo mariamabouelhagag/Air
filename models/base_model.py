@@ -17,11 +17,11 @@ class BaseModel:
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
 
-    def update_timestamp(self):
+    def save(self):
         """Update updated_at with the current datetime."""
         self.updated_at = datetime.today()
 
-    def to_dictionary(self):
+    def to_dict(self):
         """Returns a dictionary containing all keys/values of __dict__ of the instance."""
         new_dict = self.__dict__.copy()
         new_dict["__class__"] = self.__class__.__name__
