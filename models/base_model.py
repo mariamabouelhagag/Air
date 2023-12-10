@@ -10,22 +10,21 @@ class BaseModel:
     """BaseModel Class"""
 
     def __init__(self, *args, **kwargs):
-        """Initializes a new BaseModel class."""
-        time_format = "%Y-%m-%d %H:%M:%S.%f"
-        self.id = str(uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
-        models.storage.new(self)
-
+        """Initializes a new instance of the BaseModel class."""
         if kwargs:
-            for key, value in kwargs.items():
+            for key, val in kwargs.items():
                 if key == '__class__':
                     continue
                 if key in ['created_at', 'updated_at']:
                     setattr(self, key,
-                            datetime.strptime(value, time_format))
+                            datetime.strptime(val, "%Y-%m-%d %H:%M:%S.%f"))
                 else:
-                    setattr(self, key, value)
+                    setattr(self, key, val)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
+            models.storage.new(self)
 
     def __str__(self):
         """Return a string representation of the BaseModel."""
