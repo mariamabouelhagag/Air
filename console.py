@@ -5,18 +5,36 @@ class HBNBCommand(cmd.Cmd):
     """HBNBCommand class that includes methods for our command interpreter."""
 
     prompt = '(hbnb) '
-
-    def do_quit(self, line):
-        """Quit command to exit the program"""
-        return True
-
+    __classes = [
+        'BaseModel',
+        'User',
+        'State',
+        'City',
+        'Amenity',
+        'Place',
+        'Review',
+    ]
     def do_EOF(self, line):
-        """EOF command to exit the program"""
+        """Exits the interpreter."""
         return True
-
+      
+    def do_quit(self, line):
+        """Exits the interpreter."""
+        return True
+      
     def emptyline(self):
-        """An empty line + ENTER shouldn’t execute anything"""
-        pass
+      """Overrides the default behavior of the emptyline method."""
+      pass
+      
+    def do_all(self, line):
+      """
+      prints all the instances of the BaseModel class
+      """
+      for cls in HBNBCommand.__classes:
+        print(cls)
+        for obj in models.storage.all().values():
+          if obj.__class__.__name__ == cls:
+            print(obj)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
