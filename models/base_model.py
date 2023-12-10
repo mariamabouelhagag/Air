@@ -26,8 +26,8 @@ class BaseModel:
         return{
         '__class__' = self.__class__.__name__,
         'id' : self.id,
-        'created_at' : self.created_at.isoformat(),
-        'updated_at' : self.updated_at.isoformat()
+        'created_at' : str(self.created_at),
+        'updated_at' : str(self.updated_at)
         }
 
     def __str__(self):
