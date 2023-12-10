@@ -16,13 +16,6 @@ class BaseModel:
         self.id = str(uuid4())
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
-        
-        if kwargs:
-            for key, value in kwargs.items():
-                if key in ["created_at", "updated_at"]:
-                    self.__dict__[key] = datetime.strptime(value, time_format)
-                else:
-                    self.__dict__[key] = value
 
     def update_timestamp(self):
         """Update updated_at with the current datetime."""
